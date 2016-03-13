@@ -12,7 +12,6 @@ Programming conventions:
         e.g. 
         typedef struct
         {
-
         } AudioOutput_t;
         -Block member functions should be the block name separated
         from the function name with an underscore:
