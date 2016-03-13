@@ -1,8 +1,8 @@
-** ZedBoard Audio Equalizer Project **
+# ZedBoard Audio Equalizer Project
 
 -- Sean Kerr, Dan LaBove, Luke Jaffe --
 
-Programming conventions:
+## Programming conventions
     -Each block/subblock should be a struct with associated functions,
     like the lab 4 skeleton code
         -Block names should be capital words, no under scores:
