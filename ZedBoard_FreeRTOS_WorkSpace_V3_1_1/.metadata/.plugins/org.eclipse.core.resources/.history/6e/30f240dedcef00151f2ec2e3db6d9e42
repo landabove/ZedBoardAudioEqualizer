@@ -1,0 +1,51 @@
+
+#include "zedboard_freertos.h"
+#include "audioPlayer.h"
+#include <stdio.h>
+//#include <fftw3.h>
+
+audioPlayer_t audioPlayer;
+
+/*
+void fftw_init()
+{
+	int N = 5;
+	printf("t1...");
+    fftw_complex *in, *out;
+    fftw_plan p;
+    printf("t2...");
+    in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
+    printf("t3...");
+    out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
+    printf("t4...");
+    p = fftw_plan_dft_1d(N, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+    printf("t5...");
+    fftw_execute(p);
+    printf("t6...");
+    fftw_destroy_plan(p);
+    printf("t7...");
+    fftw_free(in); fftw_free(out);
+}
+*/
+
+void kissfft_init()
+{
+	 kiss_fft_cfg cfg = kiss_fft_alloc( nfft ,is_inverse_fft ,0,0 );
+}
+
+int main()
+{
+	printf("before...");
+	kissfft_init();
+	printf("after...");
+
+	// I2C and I2S initialization.
+	audioPlayer_init(&audioPlayer);
+
+	// Create the Audio player task.
+	audioPlayer_start(&audioPlayer);
+
+	// start the OS scheduler to kick off the tasks.
+	vTaskStartScheduler();
+	return(0);
+}

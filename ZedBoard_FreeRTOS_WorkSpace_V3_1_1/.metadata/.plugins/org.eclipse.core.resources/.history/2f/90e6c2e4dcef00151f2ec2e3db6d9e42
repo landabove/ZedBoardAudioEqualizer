@@ -1,0 +1,83 @@
+
+#include "zedboard_freertos.h"
+#include "audioPlayer.h"
+#include <stdio.h>
+//#include <fftw3.h>
+
+audioPlayer_t audioPlayer;
+
+/*
+void fftw_init()
+{
+	int N = 5;
+	printf("t1...");
+    fftw_complex *in, *out;
+    fftw_plan p;
+    printf("t2...");
+    in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
+    printf("t3...");
+    out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
+    printf("t4...");
+    p = fftw_plan_dft_1d(N, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+    printf("t5...");
+    fftw_execute(p);
+    printf("t6...");
+    fftw_destroy_plan(p);
+    printf("t7...");
+    fftw_free(in); fftw_free(out);
+}
+*/
+
+#ifndef M_PI
+#define M_PI 3.14159265358979324
+#endif
+
+#define N 16
+
+void TestFft(const char* title, const kiss_fft_cpx in[N], kiss_fft_cpx out[N])
+{
+  kiss_fft_cfg cfg;
+
+  printf("%s\n", title);
+
+  if ((cfg = kiss_fft_alloc(N, 0/*is_inverse_fft*/, NULL, NULL)) != NULL)
+  {
+    size_t i;
+
+    kiss_fft(cfg, in, out);
+    free(cfg);
+
+    for (i = 0; i < N; i++)
+      printf(" in[%2zu] = %+f , %+f    "
+             "out[%2zu] = %+f , %+f\n",
+             i, in[i].r, in[i].i,
+             i, out[i].r, out[i].i);
+  }
+  else
+  {
+    printf("not enough memory?\n");
+    exit(-1);
+  }
+}
+
+void kissfft_init()
+{
+
+}
+
+int main()
+{
+	printf("before...");
+	kissfft_init();
+	printf("after...");
+
+	// I2C and I2S initialization.
+	audioPlayer_init(&audioPlayer);
+
+	// Create the Audio player task.
+	audioPlayer_start(&audioPlayer);
+
+	// start the OS scheduler to kick off the tasks.
+	vTaskStartScheduler();
+	return(0);
+}

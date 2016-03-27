@@ -1,0 +1,25 @@
+
+#include "zedboard_freertos.h"
+#include "audioPlayer.h"
+#include <stdio.h>
+#include <test.h>
+#include <fftw3.h>
+
+audioPlayer_t audioPlayer;
+
+int main()
+{
+	int a = 3, b = 7;
+	int c = add(a, b);
+	printf("c: %d\n", c);
+
+	// I2C and I2S initialization.
+	audioPlayer_init(&audioPlayer);
+
+	// Create the Audio player task.
+	audioPlayer_start(&audioPlayer);
+
+	// start the OS scheduler to kick off the tasks.
+	vTaskStartScheduler();
+	return(0);
+}
