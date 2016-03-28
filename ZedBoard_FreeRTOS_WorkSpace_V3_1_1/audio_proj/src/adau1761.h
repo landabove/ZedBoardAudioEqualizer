@@ -134,6 +134,12 @@ enum audio_regs {
 #define FIFO_INT_RFPF (0x01 << 20) /**< Receive FIFO Programmable Full   */
 #define FIFO_INT_TFPE (0x01 << 21) /**< Transmit FIFO Programmable Empty */
 #define FIFO_INT_TFPF (0x01 << 22) /**< Transmit FIFO Programmable Full  */
+#define FIFO_INT_RRC (0x01 << 23) /**< Receive Reset Complete  */
+#define FIFO_INT_RC (0x01 << 26) /**< Receive Complete  */
+#define FIFO_INT_TC (0x01 << 27) /**< Transmit Complete  */
+#define FIFO_INT_RPORE (0x01 << 30) /**< Receive Packet Overrun Read Error  */
+#define FIFO_INT_RPURE (0x01 << 31) /**< Receive Packet Underrun Read Error  */
+
 
 /* Prototype Functions */
 unsigned char adau1761_init(tAdau1761 *pThis);

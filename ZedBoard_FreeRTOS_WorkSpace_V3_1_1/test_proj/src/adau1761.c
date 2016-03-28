@@ -74,7 +74,7 @@ void adau1761_iis_init(tAdau1761 *pThis) {
 	adau1761_samplingFreqSet(pThis);
 
 	//enable I2S TX
-	adau1761_iis_tx_enable();
+	//adau1761_iis_tx_enable();
 	//adau1761_iis_rx_enable();
 
 }
@@ -145,38 +145,36 @@ void adau1761_codec_init(tAdau1761 *pThis) {
 
 	//Initialize ADAU1761 control ports. (Refer to Page 51 of the ADAU1761 datasheet)
 
-	//adau1761_regWrite(pThis, R4_RECORD_MIXER_LEFT_CONTROL_0, 0x01);
-	//adau1761_regWrite(pThis, R5_RECORD_MIXER_LEFT_CONTROL_1, 0x05);
-	//adau1761_regWrite(pThis, R6_RECORD_MIXER_RIGHT_CONTROL_0, 0x01);
-	//adau1761_regWrite(pThis, R7_RECORD_MIXER_RIGHT_CONTROL_1, 0x05);
+	adau1761_regWrite(pThis, R4_RECORD_MIXER_LEFT_CONTROL_0, 0x01);
+	adau1761_regWrite(pThis, R5_RECORD_MIXER_LEFT_CONTROL_1, 0x05);
+	adau1761_regWrite(pThis, R6_RECORD_MIXER_RIGHT_CONTROL_0, 0x01);
+	adau1761_regWrite(pThis, R7_RECORD_MIXER_RIGHT_CONTROL_1, 0x05);
 
-	//adau1761_regWrite(pThis, R16_SERIAL_PORT_CONTROL_1, 0x00);
-	//adau1761_regWrite(pThis, R17_CONVERTER_CONTROL_0, 0x05);//48 KHz
+	adau1761_regWrite(pThis, R16_SERIAL_PORT_CONTROL_1, 0x00);
+	adau1761_regWrite(pThis, R17_CONVERTER_CONTROL_0, 0x05);//48 KHz
 
-	//adau1761_regWrite(pThis, R19_ADC_CONTROL, 0x13);
+	adau1761_regWrite(pThis, R19_ADC_CONTROL, 0x13);
 
-	//adau1761_regWrite(pThis, R22_PLAYBACK_MIXER_LEFT_CONTROL_0, 0x21);
+	adau1761_regWrite(pThis, R22_PLAYBACK_MIXER_LEFT_CONTROL_0, 0x21);
 
-	//adau1761_regWrite(pThis, R24_PLAYBACK_MIXER_RIGHT_CONTROL_0, 0x41);
-	//adau1761_regWrite(pThis, R26_PLAYBACK_LR_MIXER_LEFT_LINE_OUTPUT_CONTROL, 0x03);
-	//adau1761_regWrite(pThis, R27_PLAYBACK_LR_MIXER_RIGHT_LINE_OUTPUT_CONTROL, 0x09);
+	adau1761_regWrite(pThis, R24_PLAYBACK_MIXER_RIGHT_CONTROL_0, 0x41);
+	adau1761_regWrite(pThis, R26_PLAYBACK_LR_MIXER_LEFT_LINE_OUTPUT_CONTROL, 0x03);
+	adau1761_regWrite(pThis, R27_PLAYBACK_LR_MIXER_RIGHT_LINE_OUTPUT_CONTROL, 0x09);
 
-	//adau1761_regWrite(pThis, R29_PLAYBACK_HEADPHONE_LEFT_VOLUME_CONTROL, 0xE7);
-	//adau1761_regWrite(pThis, R30_PLAYBACK_HEADPHONE_RIGHT_VOLUME_CONTROL, 0xE7);
-	//adau1761_regWrite(pThis, R31_PLAYBACK_LINE_OUTPUT_LEFT_VOLUME_CONTROL, 0xE7);
-	//adau1761_regWrite(pThis, R32_PLAYBACK_LINE_OUTPUT_RIGHT_VOLUME_CONTROL, 0xE7);
+	adau1761_regWrite(pThis, R29_PLAYBACK_HEADPHONE_LEFT_VOLUME_CONTROL, 0xE7);
+	adau1761_regWrite(pThis, R30_PLAYBACK_HEADPHONE_RIGHT_VOLUME_CONTROL, 0xE7);
+	adau1761_regWrite(pThis, R31_PLAYBACK_LINE_OUTPUT_LEFT_VOLUME_CONTROL, 0xE7);
+	adau1761_regWrite(pThis, R32_PLAYBACK_LINE_OUTPUT_RIGHT_VOLUME_CONTROL, 0xE7);
 
-	//adau1761_regWrite(pThis, R35_PLAYBACK_POWER_MANAGEMENT, 0x03);
-	//adau1761_regWrite(pThis, R36_DAC_CONTROL_0, 0x03);
+	adau1761_regWrite(pThis, R35_PLAYBACK_POWER_MANAGEMENT, 0x03);
+	adau1761_regWrite(pThis, R36_DAC_CONTROL_0, 0x03);
 
-	//adau1761_regWrite(pThis, R58_SERIAL_INPUT_ROUTE_CONTROL, 0x01);
-	//adau1761_regWrite(pThis, R59_SERIAL_OUTPUT_ROUTE_CONTROL, 0x01);
+	adau1761_regWrite(pThis, R58_SERIAL_INPUT_ROUTE_CONTROL, 0x01);
+	adau1761_regWrite(pThis, R59_SERIAL_OUTPUT_ROUTE_CONTROL, 0x01);
 
-	//adau1761_regWrite(pThis, R64_SERIAL_PORT_SAMPLING_RATE, 0x05);//48 KHz
-	//adau1761_regWrite(pThis, R65_CLOCK_ENABLE_0, 0x7F);
-	//adau1761_regWrite(pThis, R66_CLOCK_ENABLE_1, 0x03);
-
-
+	adau1761_regWrite(pThis, R64_SERIAL_PORT_SAMPLING_RATE, 0x05);//48 KHz
+	adau1761_regWrite(pThis, R65_CLOCK_ENABLE_0, 0x7F);
+	adau1761_regWrite(pThis, R66_CLOCK_ENABLE_1, 0x03);
 }
 
 /* ---------------------------------------------------------------------------- *

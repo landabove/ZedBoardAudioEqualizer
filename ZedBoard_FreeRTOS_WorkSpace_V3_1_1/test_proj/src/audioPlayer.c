@@ -19,7 +19,7 @@ int audioPlayer_init(audioPlayer_t *pThis)
 {
 	//Fill the audioPlayer instance with default parameters.
 
-	pThis->volume 		= 0X8F; /*default volume */
+	pThis->volume 		= VOLUME_MAX; /*default volume */
 	pThis->frequency 	= 16000; /* default frequency */
 	pThis->AXI_I2S_RATE = 48000;
 
@@ -74,6 +74,25 @@ void txData(unsigned int* sampleA, int len)
 	}
 }
 
+void rxData()
+{
+	u32 sample, len, vac;
+	while (1)
+	{
+		if (vac = (*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC)))
+		{
+			sample = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DATA);
+			len = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_LENGTH);
+			if (len > 0)
+				printf("vac: 0x%x, sample: 0x%x, len: %u\n", vac, sample, len);
+		}
+		else
+		{
+			printf("Empty\n");
+		}
+	}
+}
+
 static void audioPlayer_task( void *pThis ){
 	// insert code for outputting samples to FIFO Q here.
 	// make sure to check if there is space in the FIFO before writing to it.
@@ -86,7 +105,8 @@ static void audioPlayer_task( void *pThis ){
 	//audioPlayer_init(pThis);
 	while (1)
 	{
-		txData(snd_samples, snd_samples_nSamples);
+		//txData(snd_samples, snd_samples_nSamples);
+		rxData();
 	}
 }
 

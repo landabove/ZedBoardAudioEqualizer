@@ -47,7 +47,7 @@ src/audioTx.o src/audioTx.d: ../src/audioTx.c ../src/audioTx.h \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xuartps_hw.h \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xiicps.h \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xiicps_hw.h \
- ../src/adau1761.h
+ ../src/adau1761.h ../src/kiss_fftr.h ../src/kiss_fft.h
 
 ../src/audioTx.h:
 
@@ -152,3 +152,7 @@ src/audioTx.o src/audioTx.d: ../src/audioTx.c ../src/audioTx.h \
 ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xiicps_hw.h:
 
 ../src/adau1761.h:
+
+../src/kiss_fftr.h:
+
+../src/kiss_fft.h:

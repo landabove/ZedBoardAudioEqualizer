@@ -29,7 +29,8 @@ extern unsigned int snd_samples_nSamples;
  *  - set the size of the memory that has sound samples
  *  - set the initial count
  */
-int audioSample_init(audioSample_t *pThis) {
+int audioSample_init(audioSample_t *pThis)
+{
 
   pThis->pmem   = snd_samples;
   pThis->size   = snd_samples_nSamples * sizeof(unsigned int);
@@ -46,6 +47,7 @@ int audioSample_init(audioSample_t *pThis) {
  */
 int audioSample_get(audioSample_t *pThis, chunk_d_t *pchunk_rx)
 {
+	/*
 	static int num_rx = 0;
 	printf("Occupancy: 0x%x\n", *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC)));
 	u32 rx_data = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DATA));
@@ -74,6 +76,7 @@ int audioSample_get(audioSample_t *pThis, chunk_d_t *pchunk_rx)
 		//printf("reset: %u\n", rx_reset);
 		//printf("des: %u\n", rx_des);
 	}
+	*/
 
 
 	//old code

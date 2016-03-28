@@ -17,6 +17,7 @@
  *******************************************************************************/
 #include "audioTx.h"
 #include "bufferPool_d.h"
+#include "kiss_fftr.h"
 
 /** Initialize audio tx
  *    - get pointer to buffer pool
@@ -67,9 +68,7 @@ int audioTx_init(audioTx_t *pThis, bufferPool_d_t *pBuffP)
  */
 int audioTx_start(audioTx_t *pThis)
 {
-     
 	/* initialize interrupt handler */
-
 	XScuGic *pGic; // pointer to GIC interrupt driver
 	pGic = prvGetInterruptControllerInstance(); // retrieve pointer to initialized instance
 
@@ -106,52 +105,127 @@ void audioTx_isr(void *pThisArg)
     // create local casted pThis to avoid casting on every single access
 	audioTx_t  *pThis = (audioTx_t*) pThisArg;
 
-    /*TODO: place implementation here. See hints */
-
     /* check int type and clear interrupt */
-	unsigned int flags = (*(volatile u32 *)FIFO_BASE_ADDR); // read the status register
-	(*(volatile u32 *)FIFO_BASE_ADDR) = flags;
+	unsigned int flags = (*(volatile u32 *)(FIFO_BASE_ADDR + FIFO_INT_STATUS)); // read the status register
+	(*(volatile u32 *)(FIFO_BASE_ADDR + FIFO_INT_STATUS)) = flags;
 
-
-    /* if queue is EMPTY
-     *  - set signal that ISR is not running
-     *  - return */
-
-	if(xQueueIsQueueEmptyFromISR(pThis->queue))
+	//printf("\n");
+	if (flags & FIFO_INT_TFPE)
 	{
-		pThis->running = 0;
-		return;
-	}
-
-    /* receive pointer to chunk structure from Tx_queue,
-     	Note: when ISR running, audioTx_put should send the chunck to Tx_queue */
-
-	chunk_d_t* pChunk;
-	xQueueReceiveFromISR(pThis->queue, &pChunk, NULL);
-
-    /* how many samples does the chunk contain ? */
-
-    /* check if sufficient space in device FIFO*/
-
-	/* copy samples in chuck into FIFO */
-	int i = 0;
-	while (i < pChunk->bytesUsed/4)
-	{
-		if (*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_VAC))
+		//printf("TFPE\n");
+		if(xQueueIsQueueEmptyFromISR(pThis->queue))
 		{
-			u32 sample_32 = (pChunk->u32_buff[i] << 16) & 0xFFFF0000;
-			*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_DATA) = sample_32;
-			*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_LENGTH) = 1;
-			i++;
+			pThis->running = 0;
+			return;
+		}
+
+	    /* receive pointer to chunk structure from Tx_queue,
+	     	Note: when ISR running, audioTx_put should send the chunk to Tx_queue */
+		chunk_d_t* pChunk;
+		xQueueReceiveFromISR(pThis->queue, &pChunk, NULL);
+
+		// copy samples in chuck into FIFO
+		int i = 0;
+		while (i < pChunk->bytesUsed/4)
+		{
+			if (*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_VAC))
+			{
+				u32 sample_32 = (pChunk->u32_buff[i] << 16) & 0xFFFF0000;
+				// send chunk pointer to audio processing task
+				*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_DATA) = sample_32;
+				*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_LENGTH) = 1;
+				i++;
+			}
+		}
+		bufferPool_d_release_from_ISR( pThis->pBuffP, pChunk );
+	}
+	if (flags & FIFO_INT_TC)
+	{
+		//printf("TC\n");
+	}
+	if (flags & FIFO_INT_RFPF)
+	{
+		//printf("RFPF\n");
+		u32 rx_vac = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC));
+		//printf("vac: 0x%x\n", rx_vac);
+		if (rx_vac)
+		{
+			u32 rx_len = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_LENGTH));
+			//printf("len: 0x%x\n", rx_len);
+			u32 rx_data = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DATA));
 		}
 	}
-	bufferPool_d_release_from_ISR( pThis->pBuffP, pChunk );
+	if (flags & FIFO_INT_RC)
+	{
+		//printf("RC\n");
+		u32 rx_des = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DES);
+		//printf("des: 0x%x\n", rx_des);
+	}
+	if (flags & FIFO_INT_RRC)
+	{
+		printf("RRC\n");
+	}
+	if (flags & FIFO_INT_RPORE)
+		printf("RPORE\n");
+	if (flags & FIFO_INT_RPURE)
+		printf("RPURE\n");
 
-    /* chunk has been copied into the FIFO, release chunk now. Return chunk to buffer pool. */
     return;
 }
 
+#define THRESH		(8000000.0)
 
+#define FFT_MEM		(2312)
+const size_t fft_mem = FFT_MEM;
+#define CHUNK_BYTES (CHUNK_SIZE/4)
+
+kiss_fft_scalar mem[FFT_MEM];
+
+void TestFftReal(const char* title, const kiss_fft_scalar in[CHUNK_BYTES], kiss_fft_cpx out[CHUNK_BYTES / 2 + 1])
+{
+  kiss_fftr_cfg cfg;
+
+  if ((cfg = kiss_fftr_alloc(CHUNK_BYTES, 0/*is_inverse_fft*/, mem, &fft_mem)) != NULL)
+  {
+    kiss_fftr(cfg, in, out);
+  }
+  else
+  {
+    printf("not enough memory: (fft)\n");
+    exit(-1);
+  }
+
+  // Frequency domain processing
+  /*
+  int i;
+  for (i = 0; i < (CHUNK_BYTES / 2 + 1); i++)
+  {
+
+	  if (out[i].r < -THRESH)
+		  out[i].r = -THRESH;
+	  if (out[i].r > THRESH)
+		  out[i].r = THRESH;
+
+	  if (out[i].i < -THRESH)
+		  out[i].i = -THRESH;
+	  if (out[i].i > THRESH)
+		  out[i].i = THRESH;
+
+	  //printf("r: %f, i: %f\n", out[i].r, out[i].i);
+  }
+  */
+
+  if ((cfg = kiss_fftr_alloc(CHUNK_BYTES, 1/*is_inverse_fft*/, mem, &fft_mem)) != NULL)
+  {
+    kiss_fftri(cfg, out, in);
+  }
+  else
+  {
+    printf("not enough memory: (ifft)\n");
+    exit(-1);
+  }
+
+}
 
 /** audio tx put
  *   copyies filled pChunk into the TX queue for transmission
@@ -162,6 +236,9 @@ void audioTx_isr(void *pThisArg)
  * @return Zero on success.
  * Negative value on failure.
  */
+
+kiss_fft_scalar in[CHUNK_BYTES];
+kiss_fft_cpx out[CHUNK_BYTES / 2 + 1];
 int audioTx_put(audioTx_t *pThis, chunk_d_t *pChunk)
 {
     
@@ -170,11 +247,24 @@ int audioTx_put(audioTx_t *pThis, chunk_d_t *pChunk)
         return -1;
     }
 
-    /*TODO: place implementation here */
+    int i;
+    // Do audio processing
+    for (i = 0; i < pChunk->bytesUsed/4; i++)
+    {
+    	in[i] = (kiss_fft_scalar)pChunk->u32_buff[i];
+    }
+    TestFftReal("Sample (real)", in, out);
+    for (i = 0; i < pChunk->bytesUsed/4; i++)
+    {
+    	//printf("old: %u, new: %+f, ratio: %u\n", pChunk->u32_buff[i], in[i], (u32)in[i]/pChunk->u32_buff[i]);
+    	pChunk->u32_buff[i] = ((u32)in[i])/CHUNK_BYTES;
+    }
+
+
+    // Send chunk to TX
     if (!pThis->running)
     {
-
-		int i = 0;
+		i = 0;
 		while (i < pChunk->bytesUsed/4)
 		{
 			if (*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_VAC))
@@ -192,14 +282,6 @@ int audioTx_put(audioTx_t *pThis, chunk_d_t *pChunk)
     {
     	xQueueSend(pThis->queue, &pChunk, 0);
     }
-
-    /* how many samples does the chunk contain ? */
-
-    /* check if sufficient space in device FIFO*/
-
-	/* copy samples in chuck into FIFO */
-
-    /* chunk has been copied into the FIFO, release chunk now. Return chunk to buffer pool. */
 
     return 0;
 }

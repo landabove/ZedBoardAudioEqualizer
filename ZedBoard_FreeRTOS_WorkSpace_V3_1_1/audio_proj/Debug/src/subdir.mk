@@ -14,6 +14,8 @@ C_SRCS += \
 ../src/audioTx.c \
 ../src/bufferPool_d.c \
 ../src/chunk_d.c \
+../src/kiss_fft.c \
+../src/kiss_fftr.c \
 ../src/main.c \
 ../src/snd_sample.c 
 
@@ -25,6 +27,8 @@ OBJS += \
 ./src/audioTx.o \
 ./src/bufferPool_d.o \
 ./src/chunk_d.o \
+./src/kiss_fft.o \
+./src/kiss_fftr.o \
 ./src/main.o \
 ./src/snd_sample.o 
 
@@ -36,6 +40,8 @@ C_DEPS += \
 ./src/audioTx.d \
 ./src/bufferPool_d.d \
 ./src/chunk_d.d \
+./src/kiss_fft.d \
+./src/kiss_fftr.d \
 ./src/main.d \
 ./src/snd_sample.d 
 

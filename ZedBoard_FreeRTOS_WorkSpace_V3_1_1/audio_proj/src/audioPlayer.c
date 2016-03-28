@@ -26,7 +26,6 @@
 #define CHUNK_NUM 30
 
 /* size of each chunk in bytes */
-#define CHUNK_SIZE 512
 
 /**
  * @def VOLUME_CHANGE_STEP
@@ -62,8 +61,8 @@ int audioPlayer_init(audioPlayer_t *pThis) {
     /* init the codec */
 	adau1761_init(&(pThis->codec));
 
-	/* allocate buffer pool */
-	status = bufferPool_d_init(&(pThis->bp), CHUNK_NUM, CHUNK_SIZE);
+	/* allocate rx buffer pool */
+	status = bufferPool_d_init(&(pThis->rxbp), CHUNK_NUM, CHUNK_SIZE);
     if ( 1 != status ) {
         return FAIL;
     }
@@ -72,13 +71,13 @@ int audioPlayer_init(audioPlayer_t *pThis) {
     /* TODO insert code for GPIO init here */
 
     /* Initialize the audio RX module*/
-    status = audioRx_init(&pThis->rx, &pThis->bp) ;
+    status = audioRx_init(&pThis->rx, &pThis->rxbp) ;
     if ( 1 != status) {
         return FAIL;
     }
 
     /* Initialize the audio TX module */
-    status = audioTx_init(&pThis->tx, &pThis->bp);
+    status = audioTx_init(&pThis->tx, &pThis->rxbp);
     if ( 1 != status ) {
         return FAIL;
     }   

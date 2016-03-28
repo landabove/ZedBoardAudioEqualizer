@@ -21,6 +21,7 @@
 #ifndef _CHUNK_D_H_
 #define _CHUNK_D_H_
 
+#define CHUNK_SIZE 512
 /**
  * Chunk status enumeration 
  */

@@ -39,7 +39,8 @@ unsigned char adau1761_init(tAdau1761 *pThis)
 }
 
 /* init the axi_iis_adi component */
-void adau1761_iis_init(tAdau1761 *pThis) {
+void adau1761_iis_init(tAdau1761 *pThis)
+{
 
 	//Reset I2S TX
 	Xil_Out32(AXI_I2S_REGISTER(AXI_I2S_REG_RESET), AXI_I2S_RESET_TX_FIFO);
@@ -60,9 +61,8 @@ void adau1761_iis_init(tAdau1761 *pThis) {
 
 	//enable I2S TX
 	adau1761_iis_tx_enable();
-
 	//enable I2S RX
-	adau1761_iis_rx_enable();
+	//adau1761_iis_rx_enable();
 }
 
 void adau1761_iis_tx_enable()
@@ -155,13 +155,6 @@ void adau1761_codec_init(tAdau1761 *pThis) {
 	adau1761_regWrite(pThis, R30_PLAYBACK_HEADPHONE_RIGHT_VOLUME_CONTROL, 0xE7);
 	adau1761_regWrite(pThis, R31_PLAYBACK_LINE_OUTPUT_LEFT_VOLUME_CONTROL, 0xE7);
 	adau1761_regWrite(pThis, R32_PLAYBACK_LINE_OUTPUT_RIGHT_VOLUME_CONTROL, 0xE7);
-
-	// registers to get rx working
-	u32 rx_vac = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC));
-	printf("RX VAC INIT: %x\n", rx_vac);
-
-	u32 tx_vac = *((volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_VAC));
-	printf("TX VAC INIT: %x\n", tx_vac);
 }
 
 /* ---------------------------------------------------------------------------- *
@@ -184,27 +177,57 @@ unsigned char adau1761_I2CMaster_init(tAdau1761 *pThis, unsigned int I2C_DeviceI
 /* init the AXI streaming FIFO */
 void adau1761_FIFO_init(tAdau1761 *pThis)
 {
+	/* POWER UP REGISTERS */
+	// Read interrupt status register (indicates
+	// transmit reset complete and receive reset
+	// complete)
+	u32 flags = (*(volatile u32 *)(FIFO_BASE_ADDR + FIFO_INT_STATUS)); // read the status register
+	printf("[Read interrupt status register]: 0x%x\n", flags);
+	// Write to clear reset done interrupt bits
+	(*(volatile u32 *)(FIFO_BASE_ADDR + FIFO_INT_STATUS)) = 0xFFFFFFFF;
+	// Read interrupt status register (again to make sure cleared)
+	flags = (*(volatile u32 *)(FIFO_BASE_ADDR + FIFO_INT_STATUS));
+	printf("[Read interrupt status register]: 0x%x\n", flags);
+	// Read interrupt enable register
+	u32 enabled = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE);
+	printf("[Read interrupt enable register]: 0x%x\n", enabled);
+	// Disable all interrupts
+	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = 0x00000000;
+	// Read interrupt enable register (again to make sure cleared)
+	enabled = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE);
+	printf("[Read interrupt enable register]: 0x%x\n", enabled);
+	// Read the transmit FIFO vacancy
+	u32 tx_vac = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_VAC);
+	printf("[Read the transmit FIFO vacancy]: 0x%x\n", tx_vac);
+	// Read the receive FIFO occupancy
+	u32 rx_occ = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC);
+	printf("[Read the receive FIFO occupancy]: 0x%x\n", rx_occ);
+
+
+	/* WRITE STUFF */
 	//Reset AXI-Streaming FIFO Transmit side
-	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_RESET) = FIFO_TX_RESET_VALUE;
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_RESET) = FIFO_TX_RESET_VALUE;
 	//Initialize the TX FIFO buffer with 0
 	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_TX_DES) = 0x00;
 
-	//Reset AXI-Streaming FIFO Receive side
-	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_RESET) = FIFO_RX_RESET_VALUE;
-	//Initialize the RX FIFO buffer with 0
-	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DES) = 0x00;
-
 	/* Reset the core and generate the external reset by writing to the Local Link Reset Register. */
-	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_LLR_OFFSET) = FIFO_LLR_RESET_VALUE;
-
-	/* clear all pending interrupts */
-	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_STATUS) = 0xffffffff;
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_LLR_OFFSET) = FIFO_LLR_RESET_VALUE;
 
 	/* Enable TFPE interrupt to propagate */
 	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_TFPE;
+	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_TC;
 
-	/* Power-up Read of Register Values */
+	/* READ STUFF */
+	//Reset AXI-Streaming FIFO Receive side
+	*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_RESET) = FIFO_RX_RESET_VALUE;
 
+	/* Enable RX interrupts */
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_RFPF;
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_RC;
+
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_RRC;
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_RPORE;
+	//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) = FIFO_INT_RPURE;
 }
 
 /* ---------------------------------------------------------------------------- *
