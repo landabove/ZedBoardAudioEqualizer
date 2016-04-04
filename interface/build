@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc com.c -o com -lncurses
