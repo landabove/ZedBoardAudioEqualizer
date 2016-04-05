@@ -23,8 +23,13 @@
 void gpio_init(void);
 void gpio_start(void);
 
-
-
+/* macros for zedboard buttons */
+#define BTN_LEFT	(0x01<<16)
+#define BTN_CENTER	(0x01<<17)
+#define BTN_DOWN	(0x01<<18)
+#define BTN_RIGHT	(0x01<<19)
+#define BTN_UP		(0x01<<20)
+#define BTN_ALL		(BTN_LEFT | BTN_CENTER | BTN_DOWN | BTN_RIGHT | BTN_UP)
 
 // /** Base address for GPIO peripheral*/
 #define GPIO_BASE 0xe000a000

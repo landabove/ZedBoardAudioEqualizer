@@ -1539,3 +1539,124 @@ java.lang.RuntimeException: No Target with ID 64 in the System
 00:05:06 INFO  : Processor reset is completed for ps7_cortexa9_0
 00:10:14 INFO  : Processor reset is completed for ps7_cortexa9_0
 00:11:36 INFO  : Processor reset is completed for ps7_cortexa9_0
+13:33:45 INFO  : Launching XSDB server: xsdb -n /opt/xilinx/SDK/2015.4/scripts/xsdb/xsdb/xsdb-server.tcl
+13:33:46 INFO  : XSDB server has started successfully.
+13:34:57 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+13:34:57 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+13:34:59 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+13:36:42 INFO  : ps7_init is completed.
+13:36:42 INFO  : ps7_post_config is completed.
+13:36:42 INFO  : Processor reset is completed for ps7_cortexa9_0
+13:50:49 INFO  : Processor reset is completed for ps7_cortexa9_0
+13:51:47 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:00:25 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:02:01 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:03:01 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+14:03:02 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:03:29 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:03:52 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+14:03:52 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+14:03:54 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+14:04:00 INFO  : ps7_init is completed.
+14:04:00 INFO  : ps7_post_config is completed.
+14:04:00 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:29:23 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:30:18 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:30:51 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:32:11 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:42:30 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:44:05 INFO  : Processor reset is completed for ps7_cortexa9_0
+14:44:48 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:19:58 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:21:46 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:22:25 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:22:46 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:23:54 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:24:13 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:28:56 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:36:27 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:39:34 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:41:31 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:42:15 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:43:21 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:46:35 INFO  : Processor reset is completed for ps7_cortexa9_0
+15:46:58 INFO  : Processor reset is completed for ps7_cortexa9_0
+16:51:41 INFO  : Processor reset is completed for ps7_cortexa9_0
+16:52:53 INFO  : Processor reset is completed for ps7_cortexa9_0
+16:53:29 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+16:53:36 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+16:53:39 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+16:53:51 INFO  : ps7_init is completed.
+16:53:51 INFO  : ps7_post_config is completed.
+16:53:51 INFO  : Processor reset is completed for ps7_cortexa9_0
+16:54:30 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+16:54:30 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+16:54:36 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+16:54:39 INFO  : ps7_init is completed.
+16:54:39 INFO  : ps7_post_config is completed.
+16:54:39 INFO  : Processor reset is completed for ps7_cortexa9_0
+16:58:42 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:05:42 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:06:11 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+17:06:11 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+17:06:14 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+17:06:20 INFO  : ps7_init is completed.
+17:06:21 INFO  : ps7_post_config is completed.
+17:06:21 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:07:13 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+17:07:15 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:08:03 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:11:47 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:18:47 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:19:42 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:20:36 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:21:13 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:22:35 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:25:22 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:26:34 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:27:48 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:29:24 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:30:12 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:30:37 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:31:36 INFO  : Processor reset is completed for ps7_cortexa9_0
+17:33:05 INFO  : Processor reset is completed for ps7_cortexa9_0
+18:07:58 INFO  : Processor reset is completed for ps7_cortexa9_0
+18:16:49 INFO  : Processor reset is completed for ps7_cortexa9_0
+18:57:11 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:01:15 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:27:50 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:27:52 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:30:12 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:30:12 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+19:30:18 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+19:30:22 INFO  : ps7_init is completed.
+19:30:22 INFO  : ps7_post_config is completed.
+19:30:22 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:31:24 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:33:03 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:37:36 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:37:38 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:40:05 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:41:37 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:41:51 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:41:53 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:42:18 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:42:18 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+19:42:23 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+19:42:28 INFO  : ps7_init is completed.
+19:42:28 INFO  : ps7_post_config is completed.
+19:42:28 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:43:26 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:43:52 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:43:52 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248469540" && level==0} -index 1' command is executed.
+19:43:56 INFO  : FPGA configured successfully with bitstream "/home/jaffe5/Documents/classes/spring_2016/mpu_based_design/ZedBoardAudioEqualizer/ZedBoard_FreeRTOS_WorkSpace_V3_1_1/system_wrapper_hw_platform_0/system_wrapper.bit"
+19:44:01 INFO  : ps7_init is completed.
+19:44:01 INFO  : ps7_post_config is completed.
+19:44:02 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:52:16 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:52:17 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:52:36 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:52:38 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:53:22 INFO  : ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching.
+19:53:24 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:16:08 ERROR : Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near 

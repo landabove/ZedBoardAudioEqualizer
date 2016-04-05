@@ -8,46 +8,59 @@
 
 #include <termcap.h>
 
-void print_bars(int bars[8], int selected)
+#define NUM_BANDS       (8)
+#define MAX_BAND_VAL    (9)
+
+void print_bars(int bars[NUM_BANDS], int selected)
 {
     int i, j, k;
-    int display[8][8];
-    for (i = 0; i < 8; i++)
+    int display[MAX_BAND_VAL][NUM_BANDS];
+    for (i = 0; i < NUM_BANDS; i++)
     {
         j = 0;
         k = 0;
 
         for (j = 0; j < bars[i]; j++)
-            display[7-j][i] = 1;
+            display[MAX_BAND_VAL-j-1][i] = 1;
 
-        display[7-j][i] = 0;
+        display[MAX_BAND_VAL-j-1][i] = 0;
         
-        for (k = bars[i]+1; k < 8; k++)
-            display[7-k][i] = -1;  
+        for (k = bars[i]+1; k < MAX_BAND_VAL; k++)
+            display[MAX_BAND_VAL-k-1][i] = -1;  
     }
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NUM_BANDS*4+3; i++)
+        printf("#");
+    printf("\n");
+
+    printf("# ");
+    for (i = 0; i < NUM_BANDS; i++)
     {
         if (selected == i)
             printf(" v  ");
         else
             printf("    ");
     }
-    printf("\n");
+    printf("#\n");
 
-    for (i = 0; i < 8; i++)
+    for (j = 0; j < MAX_BAND_VAL; j++)
     {
-        for (j = 0; j < 8; j++)
+        printf("# ");
+        for (i = 0; i < NUM_BANDS; i++)
         {
-            if (display[i][j] == 1)
+            if (display[j][i] == 1)
                 printf("| | ");
-            else if (display[i][j] == 0)
+            else if (display[j][i] == 0)
                 printf("___ ");
             else
                 printf("    ");
         }
-        printf("\n");
+        printf("#\n");
     }
+
+    for (i = 0; i < NUM_BANDS*4+3; i++)
+        printf("#");
+    printf("\n");
 }
 
 void get_garbage(int USB)
@@ -109,12 +122,12 @@ int get_msg(int USB)
     else 
     {
         //printf("Response: %s, %d\n", response, (int)strlen(response));
-        if (strlen(response) < 10)
+        if (strlen(response) < NUM_BANDS+2)
             return 1;
         response[spot-1] = '\0';
-        int i, bars[8];
+        int i, bars[NUM_BANDS];
         int selected = response[0] - '0';
-        for (i = 1; i <= 8; i++)
+        for (i = 1; i < 1+NUM_BANDS; i++)
         {
             bars[i-1] = response[i] - '0';
         }
@@ -171,3 +184,28 @@ int main()
     }
     while (get_msg(USB) == 1);
 }
+
+/*
+############################
+#
+#
+#
+#
+#
+# | |
+# | |
+# | |
+####################
+
++===================
+||
+||
+||
+||
+||+
+
+-----------
+| +--------
+| |
+
+*/

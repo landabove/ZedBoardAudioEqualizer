@@ -48,7 +48,8 @@ src/audioPlayer.o src/audioPlayer.d: ../src/audioPlayer.c \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xuartps_hw.h \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xiicps.h \
  ../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xiicps_hw.h \
- ../src/audioRx.h ../src/audioSample.h ../src/adau1761.h ../src/audioTx.h
+ ../src/audioRx.h ../src/audioSample.h ../src/adau1761.h ../src/audioTx.h \
+ ../src/gpio_interrupt.h ../src/display.h
 
 ../src/audioPlayer.h:
 
@@ -159,3 +160,7 @@ src/audioPlayer.o src/audioPlayer.d: ../src/audioPlayer.c \
 ../src/adau1761.h:
 
 ../src/audioTx.h:
+
+../src/gpio_interrupt.h:
+
+../src/display.h:

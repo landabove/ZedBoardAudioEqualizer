@@ -260,7 +260,6 @@ int audioTx_put(audioTx_t *pThis, chunk_d_t *pChunk)
     	pChunk->u32_buff[i] = ((u32)in[i])/CHUNK_BYTES;
     }
 
-
     // Send chunk to TX
     if (!pThis->running)
     {
