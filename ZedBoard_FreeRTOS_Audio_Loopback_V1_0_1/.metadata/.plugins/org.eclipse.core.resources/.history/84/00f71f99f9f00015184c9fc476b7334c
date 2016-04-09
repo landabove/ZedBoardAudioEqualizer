@@ -1,0 +1,132 @@
+/**
+ *@file audioRx.c
+ *
+ *@brief
+ *  - receive audio samples from DMA
+ *
+ * Target:   TLL6527v1-0      
+ * Compiler: VDSP++     Output format: VDSP++ "*.dxe"
+ *
+ * @author  Gunar Schirner
+ *           Rohan Kangralkar
+ * @date 03/15/2009
+ *
+ * LastChange:
+ * $Id: audioRx.c 846 2014-02-27 15:35:54Z fengshen $
+ *
+ *******************************************************************************/
+#include "audioRx.h"
+#include "bufferPool_d.h"
+#include "audioSample.h"
+#include "adau1761.h"
+
+int audioRx_init(audioRx_t *pThis, bufferPool_d_t *pBuffP)
+{
+    if ( NULL == pThis || NULL == pBuffP) {
+        printf("[ARX]: Failed init\r\n");
+        return -1;
+    }
+
+    pThis->pPending     = NULL;
+    pThis->pBuffP       = pBuffP;
+
+    pThis->running      = 0;    // ISR turned off by default -- This is just to check - might not be needed necessarily.
+
+    // init queue with
+    pThis->queue = xQueueCreate(AUDIORX_QUEUE_DEPTH, sizeof(chunk_d_t*));
+
+
+    printf("[ARX]: RX init complete\r\r\n");
+
+    return 1;
+}
+
+
+int audioRx_start(audioRx_t *pThis)
+{
+	audioSample_init(&pThis->audioSample);
+
+	// I2S RX is initialized earlier in the adau1761.c.
+
+    return 1;
+}
+
+int audioRx_get(audioRx_t *pThis, chunk_d_t **pChunk)
+{
+	int size = 0;
+
+ 	while( queue_is_empty(&pThis->queue) ); // Block until atleast one chunk has been filled in.
+
+
+ 	int i = 0;
+    while (bufferPool_d_acquire(pThis->pBuffP, pChunk, 512) != 1) {
+    	printf("waiting %d \n", i++);
+    	vTaskDelay( 1 );
+        //printf("No free buffer pool samples available\n");
+        //return -1;
+    }
+
+
+
+    size = audioSample_get(&pThis->audioSample, *pChunk);
+
+    return size > 0 ? 1 : -1;
+}
+
+/** audioRx_isr
+
+ * Parameters:
+ * @param pThisArg  pointer to own object
+ *
+ * @return None
+ */
+void audioRx_isr(void *pThisArg)
+{
+    // local pThis to avoid constant casting
+    audioRx_t *pThis  = (audioRx_t*) pThisArg;
+
+    /* clear interrupt our own interrupt */
+    		*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_STATUS) = FIFO_INT_RFPF;
+    		//printf("audioTx_isr: KNOWN int reason %x\n", intStatus);
+
+    		 /* if queue is EMPTY
+    		     *  - set signal that ISR is not running
+    		     *  - return */
+    		    if(xQueueIsQueueFullFromISR(pThis->queue)) {
+    		    	printf("The RX queue is full, and no more incoming data could be captured\n");
+    		    	return;
+    		    }
+
+    		    int i = 0;
+    		        while (bufferPool_d_acquire_ISR(pThis->pBuffP, pChunk, 512) != 1) {
+    		        	printf("waiting %d \n", i++);
+    		        	vTaskDelay( 1 );
+    		            //printf("No free buffer pool samples available\n");
+    		            //return -1;
+    		        }
+
+
+    		    /* how many samples does the chunk be filled with - 512 + "filled samples" by the time its calculated, since the RFPF is raised */
+    		    // Should this be strictly 512?
+    		    samplesInChunk= *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_LENGTH)/sizeof(unsigned int);
+
+    		    /* check if sufficient space in device FIFO*/
+    		    /* get Nr of free bytes
+    		     * There should always be space because low thershold int at 10
+    		     */
+    		    u32 samplNr = 0;
+    		    for(samplNr=0;samplNr < samplesInChunk ;samplNr++)
+    		    {
+
+    		    	if(*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_VAC))
+    		    	{
+    		    	 	pChunk->u32_buff[samplNr] << 16 = *(volatile u32 *) (FIFO_BASE_ADDR + FIFO_RX_DATA);
+    		    	}
+    		    }
+
+    		    // receive pointer to chunk structure
+    		    //   note passing pointer to pointer as pointer will be returned */
+    		    xQueueSendFromISR( pThis->queue, &pChunk, NULL) ;
+
+    		    return;
+}

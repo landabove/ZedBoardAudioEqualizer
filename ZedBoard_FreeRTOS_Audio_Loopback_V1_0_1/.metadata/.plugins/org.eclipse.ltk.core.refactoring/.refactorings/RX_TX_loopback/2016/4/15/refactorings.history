@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;RX_TX_loopback/src/gpio_interrupt2.c&apos; to &apos;gpio_interrupt.c&apos;" description="Rename resource &apos;gpio_interrupt2.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/gpio_interrupt2.c" name="gpio_interrupt.c" stamp="1460243169664" updateReferences="true"/>
+</session>
