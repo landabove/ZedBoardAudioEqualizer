@@ -29,10 +29,7 @@
 #define VOLUME_MAX (0x7F)
 #define VOLUME_MIN (0x2F)
 
-// global queue for passing gpio interrupt messages
 QueueHandle_t gpio_queue;
-
-// global frequency profile struct
 fprof_t fprof;
 
 static void gpio_task( void *pvParameters );

@@ -25,20 +25,25 @@
 
 /* number of chunks to allocate */
 #define CHUNK_NUM 30
+
+/* size of each chunk in bytes */
+#define CHUNK_SIZE 512
+
+/**
+ * @def VOLUME_CHANGE_STEP
+ * @brief Magnitude of change in the volume when increasing or decreasing
+ */
 #define VOLUME_CHANGE_STEP (4)
+/**
+ * @def VOLUME_MAX
+ * @brief MAX volume possible is +6db Refer to COCDEC datasheet.
+ */
 #define VOLUME_MAX (0x7F)
+/**
+ * @def VOLUME_MIN
+ * @brief MIN volume possible is -73db Refer to COCDEC datasheet.
+ */
 #define VOLUME_MIN (0x2F)
-
-// global queue for passing gpio interrupt messages
-QueueHandle_t gpio_queue;
-
-// global frequency profile struct
-fprof_t fprof;
-
-static void gpio_task( void *pvParameters );
-static void display_task (void *pvParameters);
-
-
 /** initialize audio player 
  *@param pThis  pointer to the AudioPlayer global instance.
  *
@@ -79,17 +84,9 @@ int audioPlayer_init(audioPlayer_t *pThis) {
 int audioPlayer_start(audioPlayer_t *pThis)
 {
     printf("[AP]: startup \r\n");
-
-    /* create the gpio task */
-    xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
-
-    /* create the display task */
-    xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
-
 	/* Audio Player task creation */
 	xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
-
-	return PASS;
+    return PASS;
 }
 
 
@@ -119,67 +116,5 @@ void audioPlayer_task (void *pArg) {
 
 			/* Transmit the data that was received from the RX Queue */
 			audioRxTx_put(&pThis->Audio, pChunk);
-	}
-}
-
-/* GPIO Task */
-static void gpio_task( void *pvParameters )
-{
-    /* Create a queue capable of containing 10 unsigned long values. */
-    gpio_queue = xQueueCreate( 10, sizeof(int));
-
-    gpio_init(&gpio_queue);
-
-    for(;;)
-    {
-        u32 value;
-        /* Receive the counter value from Queue */
-        if( xQueueReceive( gpio_queue, &value, 1000) )
-        {
-            vTaskDelay(1);
-            u32 gpio_data = (*(volatile u32 *)GPIO_DATA_2);
-
-            if ((gpio_data & BTN_LEFT) & (value & BTN_LEFT))
-            {
-                fprof_decSel(&fprof);
-            }
-            if ((gpio_data & BTN_CENTER) & (value & BTN_CENTER))
-            {
-                fprof_init(&fprof);
-            }
-            if ((gpio_data & BTN_DOWN) & (value & BTN_DOWN))
-            {
-                fprof_decBand(&fprof);
-            }
-            if ((gpio_data & BTN_RIGHT) & (value & BTN_RIGHT))
-            {
-                fprof_incSel(&fprof);
-            }
-            if ((gpio_data & BTN_UP) & (value & BTN_UP))
-            {
-                fprof_incBand(&fprof);
-            }
-
-            // Re-enable interrupts
-            *(volatile u32 *)GPIO_INT_EN_2 = BTN_ALL;
         }
-    }
-
-    // suspend this task. All activities are in interrupts.
-    vTaskSuspend(NULL);
-}
-
-/* display task */
-void display_task (void *pvParameters)
-{
-    fprof_init(&fprof);
-
-    char buffer[NUM_BANDS+4];
-    while(1)
-    {
-        fprof_getBands(&fprof, buffer);
-        printf("%s", buffer);
-        vTaskDelay(1);
-    }
-}
-
+	}

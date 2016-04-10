@@ -161,3 +161,14 @@ java.lang.RuntimeException: No Target with ID 64 in the System
 19:55:21 INFO  : ps7_init is completed.
 19:55:21 INFO  : ps7_post_config is completed.
 19:55:21 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:59:02 INFO  : Processor reset is completed for ps7_cortexa9_0
+19:59:51 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:00:15 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:01:58 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:03:50 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:04:02 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:04:15 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:05:00 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:05:16 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:06:28 INFO  : Processor reset is completed for ps7_cortexa9_0
+20:07:34 INFO  : Processor reset is completed for ps7_cortexa9_0

@@ -29,14 +29,11 @@
 #define VOLUME_MAX (0x7F)
 #define VOLUME_MIN (0x2F)
 
-// global queue for passing gpio interrupt messages
 QueueHandle_t gpio_queue;
-
-// global frequency profile struct
 fprof_t fprof;
 
 static void gpio_task( void *pvParameters );
-static void display_task (void *pvParameters);
+static void display_task (void *arg);
 
 
 /** initialize audio player 
@@ -79,17 +76,9 @@ int audioPlayer_init(audioPlayer_t *pThis) {
 int audioPlayer_start(audioPlayer_t *pThis)
 {
     printf("[AP]: startup \r\n");
-
-    /* create the gpio task */
-    xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
-
-    /* create the display task */
-    xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
-
 	/* Audio Player task creation */
 	xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
-
-	return PASS;
+    return PASS;
 }
 
 
@@ -127,8 +116,6 @@ static void gpio_task( void *pvParameters )
 {
     /* Create a queue capable of containing 10 unsigned long values. */
     gpio_queue = xQueueCreate( 10, sizeof(int));
-
-    gpio_init(&gpio_queue);
 
     for(;;)
     {
@@ -170,7 +157,7 @@ static void gpio_task( void *pvParameters )
 }
 
 /* display task */
-void display_task (void *pvParameters)
+void display_task (void *arg)
 {
     fprof_init(&fprof);
 

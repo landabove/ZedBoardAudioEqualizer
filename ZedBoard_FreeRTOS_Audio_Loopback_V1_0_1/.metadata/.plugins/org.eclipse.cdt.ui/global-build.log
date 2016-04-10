@@ -1183,3 +1183,1132 @@ make: Nothing to be done for `all'.
 19:55:20 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
 make all 
 make: Nothing to be done for `all'.
+19:58:56 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+19:59:01 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+19:59:49 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:60:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:88:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123816	1148896	  99196	1371908	 14ef04	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+19:59:50 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:00:11 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:45:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+../src/audioPlayer.c:48:52: error: 'CHUNK_SIZE' undeclared (first use in this function)
+  status = bufferPool_d_init(&pThis->bp, CHUNK_NUM, CHUNK_SIZE);
+                                                    ^
+../src/audioPlayer.c:48:52: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:73:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+make: *** [src/audioPlayer.o] Error 1
+20:00:14 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:45:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+../src/audioPlayer.c:48:52: error: 'CHUNK_SIZE' undeclared (first use in this function)
+  status = bufferPool_d_init(&pThis->bp, CHUNK_NUM, CHUNK_SIZE);
+                                                    ^
+../src/audioPlayer.c:48:52: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:73:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+make: *** [src/audioPlayer.o] Error 1
+20:01:44 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/adau1761.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/adau1761.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/adau1761.d" -MT"src/adau1761.d" -o "src/adau1761.o" "../src/adau1761.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioRxTx.h:20,
+                 from ../src/adau1761.c:1:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+Finished building: ../src/adau1761.c
+ 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:45:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:73:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building file: ../src/audioRxTx.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioRxTx.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioRxTx.d" -MT"src/audioRxTx.d" -o "src/audioRxTx.o" "../src/audioRxTx.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioRxTx.h:20,
+                 from ../src/audioRxTx.c:18:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioRxTx.c:20:0:
+../src/test_fft.h: In function 'test_fft_real':
+../src/test_fft.h:62:26: warning: passing argument 3 of 'kiss_fftri' discards 'const' qualifier from pointer target type
+     kiss_fftri(cfg, out, in);
+                          ^
+In file included from ../src/test_fft.h:12:0,
+                 from ../src/audioRxTx.c:20:
+../src/kiss_fftr.h:35:6: note: expected 'float *' but argument is of type 'const float *'
+ void kiss_fftri(kiss_fftr_cfg cfg,const kiss_fft_cpx *freqdata,kiss_fft_scalar *timedata);
+      ^
+Finished building: ../src/audioRxTx.c
+ 
+Building file: ../src/main.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/main.c:23:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+Finished building: ../src/main.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123816	1148896	  99196	1371908	 14ef04	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:01:56 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:45:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:73:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123816	1148896	  99196	1371908	 14ef04	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:01:57 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:02:50 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:35:13: warning: 'gpio_task' declared 'static' but never defined [-Wunused-function]
+ static void gpio_task( void *pvParameters );
+             ^
+../src/audioPlayer.c:36:13: warning: 'display_task' declared 'static' but never defined [-Wunused-function]
+ static void display_task (void *arg);
+             ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123816	1148896	  99244	1371956	 14ef34	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:03:03 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:35:13: warning: 'gpio_task' declared 'static' but never defined [-Wunused-function]
+ static void gpio_task( void *pvParameters );
+             ^
+../src/audioPlayer.c:36:13: warning: 'display_task' declared 'static' but never defined [-Wunused-function]
+ static void display_task (void *arg);
+             ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123816	1148896	  99244	1371956	 14ef34	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:03:23 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:115:13: warning: 'gpio_task' defined but not used [-Wunused-function]
+ static void gpio_task( void *pvParameters )
+             ^
+../src/audioPlayer.c:160:6: warning: 'display_task' defined but not used [-Wunused-function]
+ void display_task (void *arg)
+      ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124200	1148896	  99244	1372340	 14f0b4	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:03:37 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:115:13: warning: 'gpio_task' defined but not used [-Wunused-function]
+ static void gpio_task( void *pvParameters )
+             ^
+../src/audioPlayer.c:160:6: warning: 'display_task' defined but not used [-Wunused-function]
+ void display_task (void *pvParameters)
+      ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124200	1148896	  99244	1372340	 14f0b4	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:03:43 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:115:13: warning: 'gpio_task' defined but not used [-Wunused-function]
+ static void gpio_task( void *pvParameters )
+             ^
+../src/audioPlayer.c:160:6: warning: 'display_task' defined but not used [-Wunused-function]
+ void display_task (void *pvParameters)
+      ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124200	1148896	  99244	1372340	 14f0b4	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:03:49 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:03:59 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:115:13: warning: 'gpio_task' defined but not used [-Wunused-function]
+ static void gpio_task( void *pvParameters )
+             ^
+../src/audioPlayer.c:160:6: warning: 'display_task' defined but not used [-Wunused-function]
+ void display_task (void *pvParameters)
+      ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124136	1148896	  99244	1372276	 14f074	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:04:01 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:04:13 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:80:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: At top level:
+../src/audioPlayer.c:115:13: warning: 'gpio_task' defined but not used [-Wunused-function]
+ static void gpio_task( void *pvParameters )
+             ^
+../src/audioPlayer.c:160:6: warning: 'display_task' defined but not used [-Wunused-function]
+ void display_task (void *pvParameters)
+      ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124200	1148896	  99244	1372340	 14f0b4	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:04:15 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:04:55 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:81:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124328	1148896	  99244	1372468	 14f134	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:04:59 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:05:16 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:05:51 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:81:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../src/audioPlayer.c: In function 'audioPlayer_task':
+../src/audioPlayer.c:105:2: error: too few arguments to function 'gpio_init'
+  gpio_init();
+  ^
+In file included from ../src/audioPlayer.c:23:0:
+../src/gpio_interrupt.h:143:5: note: declared here
+ int gpio_init(QueueHandle_t* qptr)
+     ^
+make: *** [src/audioPlayer.o] Error 1
+20:06:17 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:81:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124328	1148896	  99244	1372468	 14f134	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:06:27 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:07:26 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:81:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124328	1148896	  99244	1372468	 14f134	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:07:31 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:52:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:81:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124328	1148896	  99244	1372468	 14f134	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 
+20:07:33 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
+make all 
+make: Nothing to be done for `all'.
+20:08:25 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+make all 
+Building file: ../src/audioPlayer.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/audioPlayer.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/audioPlayer.d" -MT"src/audioPlayer.d" -o "src/audioPlayer.o" "../src/audioPlayer.c"
+In file included from ../src/zedboard_freertos.h:16:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^
+In file included from ../src/audioPlayer.c:22:0:
+../src/fprof.h: In function 'fprof_init':
+../src/fprof.h:17:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+../src/audioPlayer.c: In function 'audioPlayer_init':
+../src/audioPlayer.c:55:2: warning: implicit declaration of function 'Adau1761_Init' [-Wimplicit-function-declaration]
+  Adau1761_Init(&pThis->codec);
+  ^
+In file included from ../src/zedboard_freertos.h:2:0,
+                 from ../src/bufferPool_d.h:23,
+                 from ../src/audioPlayer.h:21,
+                 from ../src/audioPlayer.c:19:
+../src/audioPlayer.c: In function 'audioPlayer_start':
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:84:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:87:5: note: in expansion of macro 'xTaskCreate'
+     xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+     ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:345:134: warning: pointer targets in passing argument 2 of 'xTaskGenericCreate' differ in signedness [-Wpointer-sign]
+ #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+                                                                                                                                      ^
+../src/audioPlayer.c:90:2: note: in expansion of macro 'xTaskCreate'
+  xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+  ^
+../../freertos_bsp_3_1_1/ps7_cortexa9_0/include/task.h:1986:12: note: expected 'const char * const' but argument is of type 'signed char *'
+ BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+            ^
+Finished building: ../src/audioPlayer.c
+ 
+Building target: RX_TX_loopback.elf
+Invoking: ARM gcc linker
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
+Finished building target: RX_TX_loopback.elf
+ 
+Invoking: ARM Print Size
+arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 124328	1148896	  99244	1372468	 14f134	RX_TX_loopback.elf
+Finished building: RX_TX_loopback.elf.size
+ 

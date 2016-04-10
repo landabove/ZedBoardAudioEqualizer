@@ -29,10 +29,7 @@
 #define VOLUME_MAX (0x7F)
 #define VOLUME_MIN (0x2F)
 
-// global queue for passing gpio interrupt messages
 QueueHandle_t gpio_queue;
-
-// global frequency profile struct
 fprof_t fprof;
 
 static void gpio_task( void *pvParameters );
@@ -105,6 +102,8 @@ void audioPlayer_task (void *pArg) {
 	audioPlayer_t *pThis = (audioPlayer_t *)  pArg;
 	chunk_d_t *pChunk = NULL;
 
+	gpio_init(&gpio_queue);
+
     /* Start the audio module (FIFO Interrupt Enable)*/
     status = audioRxTx_start(&pThis->Audio);
 	if (status != 1) {
@@ -127,8 +126,6 @@ static void gpio_task( void *pvParameters )
 {
     /* Create a queue capable of containing 10 unsigned long values. */
     gpio_queue = xQueueCreate( 10, sizeof(int));
-
-    gpio_init(&gpio_queue);
 
     for(;;)
     {
