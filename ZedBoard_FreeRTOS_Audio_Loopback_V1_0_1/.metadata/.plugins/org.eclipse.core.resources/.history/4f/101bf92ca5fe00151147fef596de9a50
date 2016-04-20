@@ -1,0 +1,70 @@
+/*
+ * gpio_interrupt.c
+ *
+ *  Created on: Apr 9, 2016
+ *      Author: root
+ */
+
+#include "adau1761.h"
+#include "zedboard_freertos.h"
+#include "gpio_interrupt.h"
+#include "audioPlayer.h"
+
+static int gpio_setupInts(QueueHandle_t* queue)
+{
+    // pointer to driver structure
+    XScuGic *pGIC;
+    // get pointer to GIC (already initialized at OS startup
+    pGIC = prvGetInterruptControllerInstance();
+    // connect own interrupt handler to GIC handler
+    XScuGic_Connect(pGIC, GPIO_INTERRUPT_ID,
+    (Xil_ExceptionHandler) gpio_intrHandler,(void *) queue);
+    // Enable interrupt at GIC
+    XScuGic_Enable(pGIC, GPIO_INTERRUPT_ID);
+    /* Enable IRQ at core (should be enabled anyway)*/
+    Xil_ExceptionEnableMask(XIL_EXCEPTION_IRQ);
+
+    /* Enable IRQ in processor core  */
+
+    return XST_SUCCESS;
+}
+
+static void gpio_intrHandler(void *pRef)
+{
+    // read interrupt status
+    u32 int_assert = (*(volatile u32 *)GPIO_INT_STAT_2) & ~(*(volatile u32 *)GPIO_INT_MASK_2);
+
+    // clear interrupts
+    (*(volatile u32 *)GPIO_INT_STAT_2) = int_assert;
+
+    // send interrupt status to queue
+    xQueueSendFromISR( gpio_queue,( void * ) &int_assert, NULL);
+
+    // temporarily disable interrupts
+    *(volatile u32 *)GPIO_INT_DIS_2 = 0xFFFFFFFF;
+
+    /*
+    unsigned int n;
+    for ( n=0; n < 5000000; n++ )
+    {
+        asm("nop;");
+    }
+    */
+}
+
+void gpio_init(void)
+{
+    /* OutEnable for LEDs which is top 8 bits need to be set to 1 */
+    *(volatile u32 *)GPIO_DIRM_2 = 0x00000000;
+    *(volatile u32 *)GPIO_OEN_2 =  0x00000000;
+
+    /* disable interrupts before configuring new ints */
+    *(volatile u32 *)GPIO_INT_DIS_2 = 0xFFFFFFFF;
+
+    *(volatile u32 *)GPIO_INT_TYPE_2 = BTN_ALL;
+    *(volatile u32 *)GPIO_INT_POLARITY_2 = BTN_ALL;
+    *(volatile u32 *)GPIO_INT_ANY_2 = BTN_ALL; // or 0x00000000
+
+    /* enable input bits */
+    *(volatile u32 *)GPIO_INT_EN_2 = BTN_ALL;
+}

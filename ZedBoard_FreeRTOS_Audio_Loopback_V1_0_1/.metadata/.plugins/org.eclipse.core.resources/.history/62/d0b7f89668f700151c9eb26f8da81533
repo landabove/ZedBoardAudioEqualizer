@@ -1,0 +1,135 @@
+/**
+ *@file audioPlayer.c
+ *
+ *@brief
+ *  - core module for audio player
+ *
+ * Target:   Xilinx Zynq Zedboard
+ * Compiler/IDE: GCC - Xilinx SDK 2015.4
+ *
+ * @author:  Gunar Schirner
+ *           Rohan Kangralkar
+ * @date	03/08/2010
+ *
+ * LastChange:
+ * $Id: audioPlayer.c 846 2014-02-27 15:35:54Z fengshen $
+ *
+ *******************************************************************************/
+
+#include "audioPlayer.h"
+#include "adau1761.h"
+#include "zedboard_freertos.h"
+#include "audioTx.h"
+
+
+/* number of chunks to allocate */
+//TODO: up to 30 once heap size is increased
+#define CHUNK_NUM 30
+
+/* size of each chunk in bytes */
+#define CHUNK_SIZE 512
+
+/**
+ * @def VOLUME_CHANGE_STEP
+ * @brief Magnitude of change in the volume when increasing or decreasing
+ */
+#define VOLUME_CHANGE_STEP (4)
+/**
+ * @def VOLUME_MAX
+ * @brief MAX volume possible is +6db Refer to COCDEC datasheet.
+ */
+#define VOLUME_MAX (0x7F)
+/**
+ * @def VOLUME_MIN
+ * @brief MIN volume possible is -73db Refer to COCDEC datasheet.
+ */
+#define VOLUME_MIN (0x2F)
+/** initialize audio player 
+ *@param pThis  pointer to the AudioPlayer global instance.
+ *
+ *@return 0 success, non-zero otherwise
+ **/
+int audioPlayer_init(audioPlayer_t *pThis) {
+    int status = 0;
+    printf("[AP]: Init start\r\n");
+    
+    pThis->volume 		= VOLUME_MIN; /*default volume */
+    pThis->frequency 	= 48000; /* default frequency */
+    
+    /* Init I2C/I2S/CODEC and AXI Streaming FIFO */
+	adau1761_init(&pThis->codec);
+
+	/* Allocate buffer pool and Init Chunk/freelist*/
+	status = bufferPool_d_init(&pThis->bp, CHUNK_NUM, CHUNK_SIZE);
+    if ( 1 != status ) {
+        return FAIL;
+    }
+
+    /* Initialize the Audio RX/TX module*/
+    status = audio_init(&pThis->Audio, &pThis->bp) ;
+    if ( 1 != status) {
+        return FAIL;
+    }
+
+    printf("[AP]: Init complete\r\n");
+    return PASS;
+}
+
+
+/** audioPlayer task creation.
+ *@param pThis  pointer to the globally declared and initialized audioPlayer object
+ *
+ *@return 0 success, non-zero otherwise
+ **/
+int audioPlayer_start(audioPlayer_t *pThis)
+{
+    printf("[AP]: startup \r\n");
+	/* Audio Player task creation */
+	xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+    return PASS;
+}
+
+
+
+/** main loop of audio player does not terminate
+ *@param pThis  pointer to the globally declared and initialized audioPlayer object
+ *
+ *@return 0 success, non-zero otherwise
+ **/
+void audioPlayer_task (void *pArg) {
+    
+	int status = FAIL;
+	audioPlayer_t *pThis = (audioPlayer_t *)  pArg;
+	chunk_d_t *pChunk;
+
+    /* Start the audio module (FIFO Interrupt Enable)*/
+    status = audio_start(&pThis->Audio);
+	if (status != 1) {
+        return;
+    }
+
+	/* Main loop */
+	while(1) {
+		/* The first set of samples [512] needs to be Received through the RFPF trigger and stored in the Rx Queue.
+		 */
+
+		/* Check if Rx queue is EMPTY
+							 *  -  Spin until there's a chunk filled in the RX queue
+		 	 	 	 	 	 *  -  Take the next available chunk from the RX queue and put it in to the TX queue
+		*/
+							/* Spin here until there's a chunk filled in the RX queue */
+		*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) =  0x0;
+		printf("RX QF 1: %d\n", (AUDIORX_QUEUE_DEPTH) - (uxQueueSpacesAvailable(pThis->Audio.rx_queue)));
+							while((uxQueueSpacesAvailable(pThis->Audio.rx_queue))==AUDIORX_QUEUE_DEPTH);
+
+							//*(volatile u32 *) (FIFO_BASE_ADDR + FIFO_INT_ENABLE) =  0x0;
+							printf("RX QF 2: %d\n", (AUDIORX_QUEUE_DEPTH) - (uxQueueSpacesAvailable(pThis->Audio.rx_queue)));
+
+							// Rx Queue is not empty - Acquire pointer to the next chunk.
+							while ( pdTRUE != xQueueReceive(pThis->Audio.rx_queue, &pThis->chunk, 100));
+							//audio_get(&pThis->Audio, &pChunk);
+							/* Transmit the data that was receive from the RX Queue */
+							printf("RX task %p\n",pThis->chunk);
+							audio_put(&pThis->Audio, pThis->chunk);
+        }
+}
