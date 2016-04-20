@@ -12,22 +12,22 @@ float frequencyScaledSamples[3][ARRAY_SIZE];
 
 float hanningWindow[ARRAY_SIZE];
 
-float frequencyScalars[ARRAY_SIZE];
+float frequencyScalars[SCALING_SIZE];
 
-kiss_fft_cfg fft_cfg;
-kiss_fft_cfg ifft_cfg;
+kiss_fftr_cfg fftr_cfg;
+kiss_fftr_cfg ifftr_cfg;
 
 void configureFft()
 {
-    fft_cfg = kiss_fft_alloc(ARRAY_SIZE, 0, NULL, NULL);
-    ifft_cfg = kiss_fft_alloc(ARRAY_SIZE, 1, NULL, NULL);
+    fftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 0, NULL, NULL);
+    ifftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 1, NULL, NULL);
 }
 
 void configureScalars(float *input)
 {
     int i;
     
-    for (i = 0; i < ARRAY_SIZE; i++)
+    for (i = 0; i < ARRAY_SIZE / 2 + 1; i++)
     {
         frequencyScalars[i] = input[i];
     }
@@ -58,28 +58,29 @@ void applyWindow(short *input, float *output)
 void frequencyScale(float *input, float *output, int len, float *scalars)
 {
     int i;
-    kiss_fft_cpx inputComplex[len];
-    kiss_fft_cpx transformedArray[len];
+    kiss_fft_scalar inputArray[len];
+    kiss_fft_cpx transformedArray[len / 2 + 1];
 
     for (i = 0; i < len; i++)
     {
-        inputComplex[i].r = input[i];
-        inputComplex[i].i = 0;
+        //inputComplex[i].r = input[i];
+        //inputComplex[i].i = 0;
+        inputArray[i] = input[i];
     }
 
-    kiss_fft(fft_cfg, inputComplex, transformedArray);
+    kiss_fftr(fftr_cfg, inputArray, transformedArray);
 
-    for (i = 0; i < ARRAY_SIZE; i++)
+    for (i = 0; i < SCALING_SIZE; i++)
     {
         transformedArray[i].r *= scalars[i];
         transformedArray[i].i *= scalars[i];
     }
 
-    kiss_fft(ifft_cfg, transformedArray, inputComplex);
+    kiss_fftri(ifftr_cfg, transformedArray, inputArray);
 
     for (i = 0; i < ARRAY_SIZE; i++)
     {
-        output[i] = inputComplex[i].r / (1.0 * ARRAY_SIZE);
+        output[i] = inputArray[i] / (1.0 * ARRAY_SIZE);
     }
 }
 
