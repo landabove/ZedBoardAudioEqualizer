@@ -1,7 +1,8 @@
 #ifndef FPROF_H
 #define FPROF_H
 
-#define NUM_BANDS       (8)
+#define NUM_BANDS       (8) // anchor bands
+#define NUM_SUB_BANDS	(4) // bands per anchor
 #define MAX_BAND_VAL    (9)
 #define MIN_BAND_VAL    (0)
 
@@ -65,5 +66,20 @@ void fprof_getBands(fprof_t* this, char buffer[12])
     buffer[NUM_BANDS+3] = '\0';
 }
 
+void fprof_getSubBands(fprof_t* this, float bands[NUM_BANDS*NUM_SUB_BANDS])
+{
+	int i, j;
+	float diff, inc, val;
+	for (i = 0; i < NUM_BANDS-1; i++)
+	{
+		diff = (float)(this->bands[i+1] - this->bands[i]);
+		inc = diff/(float)NUM_SUB_BANDS;
+		for (j = 0; j < NUM_SUB_BANDS; j++)
+		{
+			val = ((float)this->bands[i]) + ((float)j)*inc;
+			bands[i*NUM_SUB_BANDS + j] = val;
+		}
+	}
+}
 
 #endif
