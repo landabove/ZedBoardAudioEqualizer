@@ -13,5 +13,5 @@
 void processInput(short *input, short *output);
 void frequencyScale(float *input, float *output, int len, float *scalars);
 void configureFft();
-void configureScalars();
+void configureScalars(float * input);
 void configureWindow();

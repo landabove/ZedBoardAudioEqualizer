@@ -12,7 +12,7 @@ float frequencyScaledSamples[3][ARRAY_SIZE];
 
 float hanningWindow[ARRAY_SIZE];
 
-float frequencyScalars[SCALING_SIZE];
+float * frequencyScalars;
 
 kiss_fftr_cfg fftr_cfg;
 kiss_fftr_cfg ifftr_cfg;
@@ -25,12 +25,7 @@ void configureFft()
 
 void configureScalars(float *input)
 {
-    int i;
-    
-    for (i = 0; i < ARRAY_SIZE / 2 + 1; i++)
-    {
-        frequencyScalars[i] = input[i];
-    }
+    frequencyScalars = input;
 }
 
 void configureWindow()
