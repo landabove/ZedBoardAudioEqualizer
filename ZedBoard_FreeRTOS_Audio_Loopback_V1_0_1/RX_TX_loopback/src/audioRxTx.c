@@ -18,6 +18,8 @@
 #include "audioRxTx.h"
 #include "bufferPool_d.h"
 #include "test_fft.h"
+#include "frequencyScaling.h"
+#include "fprof.h"
 
 /* Init RX/TX Queue */
 int audioRxTx_init(audioRxTx_t *pThis, bufferPool_d_t *pBuffP)
@@ -27,6 +29,12 @@ int audioRxTx_init(audioRxTx_t *pThis, bufferPool_d_t *pBuffP)
         return -1;
     }
 
+    // Call frequency scaling init functions
+    configureFft();
+    configureScalars(frequency_scalars);
+    configureWindow();
+
+    // other stuff
     pThis->pPending     = NULL;
     pThis->pBuffP       = pBuffP;
 
@@ -210,6 +218,8 @@ void audioRxTx_isr(void *pThisArg) {
  * @return Zero on success.
  * Negative value on failure.
  */
+short proc_input[CHUNK_SAMPLES];
+
 int audioRxTx_put(audioRxTx_t *pThis, chunk_d_t *pChunk)
 {
     unsigned int sampleNr = 0;
@@ -218,7 +228,11 @@ int audioRxTx_put(audioRxTx_t *pThis, chunk_d_t *pChunk)
         return -1;
     }
 
-    process_audio(pChunk);
+    int i;
+    for (i = 0; i < CHUNK_SAMPLES; i++)
+    	proc_input[i] = pChunk->s16_buff[i];
+    processInput(proc_input, pChunk->s16_buff);
+    //process_audio(pChunk);
     
     /* ISR/polled execution ? */
     if ( 0 == pThis->running ) {

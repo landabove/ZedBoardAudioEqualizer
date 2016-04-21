@@ -55,7 +55,7 @@ int audioPlayer_init(audioPlayer_t *pThis) {
 	Adau1761_Init(&pThis->codec);
 
 	/* Allocate buffer pool and Init Chunk/freelist*/
-	status = bufferPool_d_init(&pThis->bp, CHUNK_NUM, CHUNK_SIZE);
+	status = bufferPool_d_init(&pThis->bp, CHUNK_NUM, CHUNK_BYTES);
     if ( PASS != status ) {
         return FAIL;
     }
@@ -178,7 +178,7 @@ void display_task (void *pvParameters)
     while(1)
     {
         fprof_getBands(&fprof, buffer);
-        printf("%s", buffer);
+        //printf("%s", buffer);
         vTaskDelay(1);
     }
 }
