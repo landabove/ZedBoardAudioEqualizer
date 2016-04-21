@@ -17,9 +17,10 @@
  *******************************************************************************/
 #include "audioRxTx.h"
 #include "bufferPool_d.h"
-#include "test_fft.h"
+//#include "test_fft.h"
 #include "frequencyScaling.h"
 #include "fprof.h"
+#include "ipprof.h"
 
 /* Init RX/TX Queue */
 int audioRxTx_init(audioRxTx_t *pThis, bufferPool_d_t *pBuffP)
@@ -28,6 +29,9 @@ int audioRxTx_init(audioRxTx_t *pThis, bufferPool_d_t *pBuffP)
         printf("[A_RX/TX]: Failed Init\r\n");
         return -1;
     }
+
+    // Call instantaneous power init functions
+
 
     // Call frequency scaling init functions
     configureFft();
@@ -207,7 +211,11 @@ void audioRxTx_isr(void *pThisArg) {
 	}
 }
 
+// instantaneous power
+void getIP(short proc_input[CHUNK_SAMPLES])
+{
 
+}
 
 /** audio tx put
  *   Copies filled pChunk into the TX queue for transmission
@@ -218,7 +226,7 @@ void audioRxTx_isr(void *pThisArg) {
  * @return Zero on success.
  * Negative value on failure.
  */
-short proc_input[CHUNK_SAMPLES];
+short fft_input[CHUNK_SAMPLES];
 
 int audioRxTx_put(audioRxTx_t *pThis, chunk_d_t *pChunk)
 {
@@ -230,9 +238,9 @@ int audioRxTx_put(audioRxTx_t *pThis, chunk_d_t *pChunk)
 
     int i;
     for (i = 0; i < CHUNK_SAMPLES; i++)
-    	proc_input[i] = pChunk->s16_buff[i];
-    processInput(proc_input, pChunk->s16_buff);
-    //process_audio(pChunk);
+    	fft_input[i] = pChunk->s16_buff[i];
+    //processInput(proc_input, pChunk->s16_buff);
+    fft(fft_input, fft_output);
     
     /* ISR/polled execution ? */
     if ( 0 == pThis->running ) {

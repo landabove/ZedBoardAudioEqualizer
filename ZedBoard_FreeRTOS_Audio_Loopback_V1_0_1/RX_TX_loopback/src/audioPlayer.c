@@ -19,8 +19,9 @@
 #include "audioPlayer.h"
 #include "zedboard_freertos.h"
 #include "audioRxTx.h"
-#include "fprof.h"
 #include "gpio_interrupt.h"
+#include "ipprof.h"
+#include "fprof.h"
 
 
 /* number of chunks to allocate */
@@ -31,6 +32,9 @@
 
 // global queue for passing gpio interrupt messages
 QueueHandle_t gpio_queue;
+
+// global instantaneous power profile struct
+fprof_t ipprof;
 
 // global frequency profile struct
 fprof_t fprof;
@@ -81,13 +85,13 @@ int audioPlayer_start(audioPlayer_t *pThis)
     printf("[AP]: startup \r\n");
 
     /* create the gpio task */
-    xTaskCreate( gpio_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+    xTaskCreate( gpio_task, ( signed char * ) "GPIO", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
 
     /* create the display task */
-    xTaskCreate( display_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
+    xTaskCreate( display_task, ( signed char * ) "DISPLAY", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1 , NULL );
 
 	/* Audio Player task creation */
-	xTaskCreate( audioPlayer_task, ( signed char * ) "HW", configMINIMAL_STACK_SIZE, pThis, tskIDLE_PRIORITY + 1 , NULL );
+	xTaskCreate( audioPlayer_task, ( signed char * ) "PLAYER", configMINIMAL_STACK_SIZE<<4, pThis, tskIDLE_PRIORITY + 1 , NULL );
 
 	return PASS;
 }
@@ -172,6 +176,7 @@ static void gpio_task( void *pvParameters )
 /* display task */
 void display_task (void *pvParameters)
 {
+	ipprof_init(&ipprof);
     fprof_init(&fprof);
 
     char buffer[NUM_BANDS+4];

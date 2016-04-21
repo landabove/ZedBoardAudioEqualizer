@@ -5,6 +5,12 @@
 // Second half of this array is current sample set
 short inputBuffer[ARRAY_SIZE * 2];
 
+// FFT memory buffer
+size_t fft_mem = MEMNEEDED;
+size_t ifft_mem = MEMNEEDED;
+char fft_buf[MEMNEEDED];
+char ifft_buf[MEMNEEDED];
+
 float windowedCrossSampleArray[ARRAY_SIZE];
 float windowedInputArray[ARRAY_SIZE];
 
@@ -20,9 +26,9 @@ kiss_fftr_cfg ifftr_cfg;
 
 void configureFft()
 {
-    if ((fftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 0, NULL, NULL)) == NULL)
+    if ((fftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 0, fft_buf, &fft_mem)) == NULL)
     	printf("Not enough memory for fft.\n");
-    if ((ifftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 1, NULL, NULL)) == NULL)
+    if ((ifftr_cfg = kiss_fftr_alloc(ARRAY_SIZE, 1, ifft_buf, &ifft_mem)) == NULL)
 		printf("Not enough memory for ifft.\n");
     printf("configureFft\n");
 }
@@ -88,7 +94,7 @@ void frequencyScale(float *input, float *output, int len, float *scalars)
 // Note: this function will have half-buffer phase shift effect
 void processInput(short *input, short *output)
 {
-	printf("processInput\n");
+	//printf("processInput\n");
     int i;
 
     // Read in the input buffer
@@ -122,4 +128,15 @@ void processInput(short *input, short *output)
         inputBuffer[i] = inputBuffer[i + ARRAY_SIZE];
         frequencyScaledSamples[FSS_PREVIOUS_INPUT][i] = frequencyScaledSamples[FSS_THIS_INPUT][i];
     }
+}
+
+void fft(short input[ARRAY_SIZE], kiss_fft_cpx output[SCALING_SIZE])
+{
+    int i;
+    kiss_fft_scalar proc_arr[ARRAY_SIZE];
+
+    for (i = 0; i < ARRAY_SIZE; i++)
+        proc_arr[i] = input[i];
+
+    kiss_fftr(fftr_cfg, proc_arr, output);
 }

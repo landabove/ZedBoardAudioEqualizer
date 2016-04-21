@@ -1,21 +1,6 @@
-14:28:20 **** Auto Build of configuration Debug for project RX_TX_loopback ****
+18:06:21 **** Incremental Build of configuration Debug for project RX_TX_loopback ****
 make all 
-'Building file: ../src/frequencyScaling.c'
-'Invoking: ARM gcc compiler'
-arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/frequencyScaling.o" -I../../freertos_bsp_3_1_1/ps7_cortexa9_0/include -MMD -MP -MF"src/frequencyScaling.d" -MT"src/frequencyScaling.d" -o "src/frequencyScaling.o" "../src/frequencyScaling.c"
-'Finished building: ../src/frequencyScaling.c'
-' '
-'Building target: RX_TX_loopback.elf'
-'Invoking: ARM gcc linker'
-arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../freertos_bsp_3_1_1/ps7_cortexa9_0/lib -o "RX_TX_loopback.elf"  ./src/adau1761.o ./src/audioPlayer.o ./src/audioRxTx.o ./src/audioSample.o ./src/bufferPool_d.o ./src/chunk_d.o ./src/fprof.o ./src/frequencyScaling.o ./src/kiss_fft.o ./src/kiss_fftr.o ./src/main.o ./src/snd_sample.o   -lm -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group
-'Finished building target: RX_TX_loopback.elf'
-' '
-'Invoking: ARM Print Size'
-arm-xilinx-eabi-size RX_TX_loopback.elf  |tee "RX_TX_loopback.elf.size"
-   text	   data	    bss	    dec	    hex	filename
- 126624	1148896	 108476	1383996	 151e3c	RX_TX_loopback.elf
-'Finished building: RX_TX_loopback.elf.size'
-' '
+make: Nothing to be done for `all'.
 
-14:28:21 Build Finished (took 671ms)
+18:06:21 Build Finished (took 170ms)
 

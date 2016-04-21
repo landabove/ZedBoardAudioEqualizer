@@ -1,7 +1,7 @@
 #ifndef FPROF_H
 #define FPROF_H
 
-#define CHUNK_BYTES 	(1024)
+#define CHUNK_BYTES 	(16384)
 #define CHUNK_SAMPLES 	(CHUNK_BYTES/4)
 
 #define ARRAY_SIZE		(CHUNK_SAMPLES)
